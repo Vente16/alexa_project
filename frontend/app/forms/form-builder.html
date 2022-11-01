@@ -73,7 +73,7 @@
 
                 <div class="col-md-4" style="margin-top: 10px">
                   <br />&nbsp;
-                  <button class="btn btn-dark" ng-click="addOption(option)">
+                  <button class="btn btn-dark" type="button" ng-click="addOption(option)">
                     Agregar opción
                   </button>
                   <br />
@@ -111,7 +111,7 @@
             Formulario para usuarios)</small>
         </div>
         <h4 class="header-title text-uppercase">Preview formulario</h4>
-        <ng-build-form fields="info" ng-type-form="builder" controller-name="FormBuilderController"></ng-build-form>
+        <ng-build-form fields="info" ng-type-form="builder" ng-button-text="registrar" controller-name="FormBuilderController"></ng-build-form>
       </div>
     </div>
   </div>
