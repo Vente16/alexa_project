@@ -1,0 +1,126 @@
+<div class="row">
+  <div class="col-md-6 mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title text-uppercase">Elementos del formulario</h4>
+        <form name="myFormBuild" id="firstForm" role="form" ng-submit="submit($event)">
+          <div>
+            <div class="form-group">
+              <label for="namefield">Nombre del campo</label>
+              <input name="field" type="text" class="form-control" id="namefield" aria-describedby="emailHelp"
+                placeholder="Ingresa nombre campo" ng-model="field.name" ng-required="true" />
+              <div ng-show="myFormBuild.field.$dirty && myFormBuild.field.$invalid">
+                <p ng-show="myFormBuild.field.$error.required" class="text-danger" role="alert">
+                  <strong>Nombre del campo</strong> es requerido
+                </p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="namedbfield">Nombre del campo en base de datos</label>
+              <input type="text" class="form-control" id="namedbfield" aria-describedby="emailHelp"
+                placeholder="Ingresa nombre campo" ng-model="field.dbfield" value="{{field.value}}" name="dbfield"
+                ng-required="true" />
+              <div ng-show="myFormBuild.dbfield.$dirty && myFormBuild.dbfield.$invalid">
+                <p ng-show="myFormBuild.dbfield.$error.required" class="text-danger" role="alert">
+                  <strong>Nombre del campo en base de datos</strong> es
+                  requerido
+                </p>
+              </div>
+              <!--<small id="emailHelp" class="form-text text-muted">We'll never share your
+              email with anyone else.</small>-->
+            </div>
+
+            <div class="form-group">
+              <label for="typeElement">Tipo de campo</label>
+              <select class="form-control" id="typeElement" name="typeElement" ng-model="field.type"
+                ng-change="changeType()" ng-required="true">
+                <option value="">Selecciona un elemento</option>
+                <option value="text">text</option>
+                <option value="file">file</option>
+                <option value="textarea">textarea</option>
+                <option value="checkbox">checkbox</option>
+                <option value="options">option</option>
+                <option value="select">select</option>
+              </select>
+
+              <div ng-show="myFormBuild.typeElement.$dirty && myFormBuild.typeElement.$invalid">
+                <p ng-show="myFormBuild.typeElement.$error.required" class="text-danger" role="alert">
+                  <strong>Tipo de campo</strong> es requerido
+                </p>
+              </div>
+            </div>
+
+            <div class="form-check form-group">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1" ng-model="field.required" />
+              <label class="form-check-label" for="exampleCheck1">Requerido?</label>
+            </div>
+
+            <div class="form-group" ng-if="field.type === 'text' || field.type === 'textarea'">
+              <label for="exampleInputEmail1">Regex</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="" ng-model="field.rules" />
+              <small id="emailHelp" class="form-text text-muted">Selecciona una expresión regular para el campo</small>
+            </div>
+
+            <div class="form-options-test" ng-if="field.type === 'select' || field.type === 'options'">
+              <div class="row">
+                <div class="col-md-8 form-group">
+                  <label for="addOptionInput">Nombre del campo</label>
+                  <input type="text" class="form-control" id="addOptionInput" aria-describedby="emailHelp"
+                    placeholder="Ingresa nombre campo" ng-model="option" />
+                </div>
+
+                <div class="col-md-4" style="margin-top: 10px">
+                  <br />&nbsp;
+                  <button class="btn btn-dark" ng-click="addOption(option)">
+                    Agregar opción
+                  </button>
+                  <br />
+                </div>
+              </div>
+              <br />
+              <ul class="list-group">
+                <li class="list-group-item clearfix" ng-repeat="myoption in field.options track by $index">
+                  {{myoption}}<span class="pull-right"><button class="btn btn-danger" ng-click="deleteOption($index)">
+                      <span class="ti-trash"></span></button></span>
+                </li>
+              </ul>
+
+              <br />
+            </div>
+
+            <button class="btn btn-success" type="submit">
+              Agregar campo
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 mt-5">
+    <div class="card">
+      <div class="card-body">
+        <div class="form-group">
+          <label for="namefield">Nombre del formulario</label>
+          <input name="formName" type="text" class="form-control" id="formName" aria-describedby="emailHelp"
+            placeholder="Ingresa nombre campo" ng-model="formName" required="required" />
+
+          <small id="formHelp" class="form-text text-muted">Ingresa un nombre para identificar al formulario luego (Ej:
+            Formulario para usuarios)</small>
+        </div>
+        <h4 class="header-title text-uppercase">Preview formulario</h4>
+        <ng-build-form fields="info" ng-type-form="builder" controller-name="FormBuilderController"></ng-build-form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12 mt-5">
+    <div class="card">
+      <div class="card-body row justify-content-center align-self-center">
+        <button class="btn btn-dark">Guardar formulario</button>
+      </div>
+    </div>
+  </div>
+</div>

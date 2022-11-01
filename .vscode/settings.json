@@ -1,0 +1,8 @@
+{
+    "javascript.preferences.quoteStyle": "single",
+    "prettier.singleQuote": true,
+    "prettier.jsxSingleQuote": false,
+    "prettier.embeddedLanguageFormatting": "off",
+    "typescript.preferences.quoteStyle": "single",
+    "editor.formatOnSave": false
+}

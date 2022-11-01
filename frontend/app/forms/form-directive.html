@@ -1,0 +1,237 @@
+<form name="myForm" role="form">
+  <div class="form-group" ng-repeat="item in fields track by $index">
+    <ng-form name="form">
+      <div ng-if="item.type === 'text'" class="form-group">
+        <label for="_field_{{$index}}">{{item.name | uppercase}}</label>
+        <input
+          type="text"
+          class="form-control"
+          id="_field_{{$index}}"
+          name="{{item.dbfield}}"
+          placeholder="Ingresa {{item.name | lowercase}}"
+          ng-pattern="item.rules"
+          ng-required="{{item.required}}"
+          data-ng-model="field.value"
+        />
+
+        <div
+          ng-show="{{'form.'+item.dbfield+'.$dirty &&
+          form.'+item.dbfield+'.$invalid'}}"
+        >
+          <p
+            ng-show="{{'form.'+item.dbfield+'.$error.required'}}"
+            class="text-danger"
+            role="alert"
+          >
+            <strong class="capitalize-text">{{item.name}}</strong> es requerido
+          </p>
+          <p
+            ng-show="{{'form.'+item.dbfield+'.$error.pattern'}}"
+            class="text-danger"
+            role="alert"
+          >
+            El formato del campo
+            <strong class="capitalize-text">{{item.name}}</strong> es inválido
+          </p>
+        </div>
+      </div>
+
+      <div ng-if="item.type === 'file'" class="form-group">
+        <label for="_field_{{$index}}">{{item.name | uppercase}}</label>
+        <input
+          type="file"
+          ng-file-preview
+          file-model="file"
+          class="form-control"
+          id="_field_{{$index}}"
+          name="{{item.dbfield}}"
+          placeholder="Ingresa {{item.name | lowercase}}"
+          ng-pattern="item.rules"
+          ng-required="{{item.required && ngTypeForm !== 'update'}}"
+          data-ng-model="field.value"
+        />
+
+        <br />
+        <img src="" class="imagePreview" />
+
+        <div
+          ng-show="{{'form.'+item.dbfield+'.$dirty &&
+          form.'+item.dbfield+'.$invalid'}}"
+        >
+          <p
+            ng-show="{{'form.'+item.dbfield+'.$error.required'}}"
+            class="text-danger"
+            role="alert"
+          >
+            <strong class="capitalize-text">{{item.name}}</strong> es requerido
+          </p>
+          <p
+            ng-show="{{'form.'+item.dbfield+'.$error.pattern'}}"
+            class="text-danger"
+            role="alert"
+          >
+            El formato del campo
+            <strong class="capitalize-text">{{item.name}}</strong> es inválido
+          </p>
+        </div>
+      </div>
+
+      <div ng-if="item.type === 'options'">
+        <b class="text-muted mb-3 mt-4 d-block">{{item.name | uppercase}}</b>
+        <div
+          class="custom-control custom-radio custom-control-inline"
+          ng-repeat="radio in item.options track by $index"
+        >
+          <input
+            type="radio"
+            checked
+            id="_customRadio{{$index}}"
+            name="{{item.dbfield}}"
+            class="custom-control-input"
+            ng-required="{{item.required}}"
+            data-ng-model="field.value"
+          />
+          <label class="custom-control-label h7" for="_customRadio{{$index}}"
+            >{{radio}}</label
+          >
+        </div>
+
+        <div
+          ng-show="{{'form.'+item.dbfield+'.$dirty &&
+          form.'+item.dbfield+'.$invalid'}}"
+        >
+          <p
+            ng-show="{{'form.'+item.dbfield+'.$error.required'}}"
+            class="text-danger"
+            role="alert"
+          >
+            <strong class="capitalize-text">{{item.name}}</strong> es requerido
+          </p>
+        </div>
+      </div>
+
+      <div ng-if="item.type === 'select'" class="form-group">
+        <label for="field_{{$index}}">{{item.name | uppercase}}</label>
+        <select
+          class="form-control"
+          id="_field_{{$index}}"
+          name="{{item.dbfield}}"
+          ng-required="{{item.required}}"
+          data-ng-model="field.value"
+        >
+          <option value="" ng-if="!item.value">Selecciona una opción</option>
+          <option
+            value="{{selecOption}}"
+            ng-selected="item.value ===
+            selecOption"
+            ng-repeat="selecOption in item.options"
+          >
+            {{selecOption}}
+          </option>
+        </select>
+        <small class="form-text text-muted"
+          >We'll never share your email with anyone else.</small
+        >
+        <div
+          ng-show="{{'form.'+item.dbfield+'.$dirty &&
+          form.'+item.dbfield+'.$invalid'}}"
+        >
+          <p
+            ng-show="{{'form.'+item.dbfield+'.$error.required'}}"
+            class="text-danger"
+            role="alert"
+          >
+            <strong class="capitalize-text">{{item.name}}</strong> es requerido
+          </p>
+        </div>
+      </div>
+
+      <div ng-if="item.type === 'textarea'" class="form-group">
+        <label for="field_{{$index}}">{{item.name | uppercase}}</label>
+        <textarea
+          type="text"
+          class="form-control"
+          id="_field_{{$index}}"
+          name="{{item.dbfield}}"
+          ng-required="{{item.required}}"
+          data-ng-model="field.value"
+          ng-pattern="item.rules"
+        >
+          {{field.value}}</textarea
+        >
+        <div
+          ng-show="{{'form.'+item.dbfield+'.$dirty &&
+          form.'+item.dbfield+'.$invalid'}}"
+        >
+          <div
+            ng-show="{{'form.'+item.dbfield+'.$dirty &&
+            form.'+item.dbfield+'.$invalid'}}"
+          >
+            <p
+              ng-show="{{'form.'+item.dbfield+'.$error.required'}}"
+              class="text-danger"
+              role="alert"
+            >
+              <strong class="capitalize-text">{{item.name}}</strong> es
+              requerido
+            </p>
+            <p
+              ng-show="{{'form.'+item.dbfield+'.$error.pattern'}}"
+              class="text-danger"
+              role="alert"
+            >
+              El formato del campo
+              <strong class="capitalize-text">{{item.name}}</strong> es inválido
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div ng-if="item.type === 'checkbox'" class="form-check form-group">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="_field_{{$index}}"
+          name="{{item.dbfield}}"
+          ng-required="{{item.required}}"
+          data-ng-model="field.value"
+        />
+        <label class="form-check-label h7" for="_field_{{$index}}"
+          >{{item.name | uppercase}}</label
+        >
+        <div
+          ng-show="{{'form.'+item.dbfield+'.$dirty &&
+          form.'+item.dbfield+'.$invalid'}}"
+        >
+          <div
+            ng-show="{{'form.'+item.dbfield+'.$dirty &&
+            form.'+item.dbfield+'.$invalid'}}"
+          >
+            <p
+              ng-show="{{'form.'+item.dbfield+'.$error.required'}}"
+              class="text-danger"
+              role="alert"
+            >
+              <strong class="capitalize-text">{{item.name}}</strong> es
+              requerido
+            </p>
+          </div>
+        </div>
+      </div>
+    </ng-form>
+    <div ng-if="ngTypeForm === 'builder'">
+      <br />
+      <div>
+        <span class="pull-right"
+          ><button
+            type="button"
+            class="btn btn-danger"
+            ng-click="deleteField($index)"
+          >
+            <span class="ti-trash"></span></button
+        ></span>
+      </div>
+      <br />
+    </div>
+  </div>
+</form>

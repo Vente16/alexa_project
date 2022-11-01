@@ -1,0 +1,93 @@
+<div>
+  <div class="row">
+    <!-- Basic List Group start -->
+    <div class="col-md-6 mt-5">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="header-title">{{'tabla' | uppercase}}</h4>
+          <div>
+            <div class="form-group">
+              <label for="nameBuilder">Nombre del builder</label>
+              <input type="text" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="tableName">Nombre de la tabla</label>
+              <select
+                class="form-control"
+                id="tableName"
+                name="tableName"
+                ng-model="tableSelected"
+                ng-change="selectChange()"
+              >
+                <option value="">Selecciona un elemento</option>
+                <option ng-value="key" ng-repeat="(key, value) in tableNames">
+                  {{key}}
+                </option>
+              </select>
+            </div>
+            <button class="btn btn-success" ng-click="buildTable()">
+          Crear builder
+        </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Basic List Group end -->
+    <!-- Active Items start -->
+    <div class="col-md-6 mt-5">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="header-title">{{'Campos de la tabla' | uppercase}}</h4>
+          <ul class="list-group">
+            <li
+              class="list-group-item"
+              ng-repeat="item in tableNames[tableSelected] track by $index"
+              ng-class="{disabled: item === 'ID' }"
+            >
+              &nbsp; &nbsp;
+              <input
+                class="form-check-input me-1"
+                type="checkbox"
+                ng-checked="item === 'ID'"
+                ng-value="item"
+                ng-model="fieldsSlected[item]"
+                name="fieldsSlected[]"
+                ng-disabled="item === 'ID'"
+                aria-label="..."
+              />
+              {{item | uppercase}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 mt-5">
+      <div class="card">
+        <div class="card-body">
+          <ng-data-table
+            id="dataTableDinamyc"
+            table-records="dataTableInfo"
+            table-options="dataTableOpt"
+            controller-name="TablesBuilderController"
+            ng-show="dataTableInfo.records.length > 0"
+            table-bulild-type="builder"
+          >
+          </ng-data-table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12 mt-5">
+    <div class="card">
+      <div class="card-body row justify-content-center align-self-center">
+        <button class="btn btn-dark" type="button">
+          Registrar builder
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

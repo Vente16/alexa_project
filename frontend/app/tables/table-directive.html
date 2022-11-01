@@ -1,0 +1,74 @@
+<div>
+  <div class="data-tables datatable-dark">
+    <!-- ui-jq="dataTable"
+      ui-refresh="tableRecords"
+      ui-options="tableOptions"-->
+    <table
+      id="myTable"
+      class="text-center table table-bordered bordered table-striped table-condensed datatable"
+      ng-if="tableBulildType === 'builder'"
+    >
+      <thead class="text-capitalize">
+        <tr>
+          <th ng-repeat="tdata in tableRecords.header">{{tdata}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in tableRecords.records track by $index">
+          <td ng-repeat="(key, value) in item">
+            {{value}}
+
+            <span ng-if="key === 'ACTION'">
+              <div class="">
+                <button class="btn btn-info">
+                  <span class="ti-eye"></span
+                  ><span class="icon-name"> {{'ver detalle' | uppercase}}</span>
+                </button>
+
+                <button class="btn btn-danger">
+                  <span class="ti-trash"></span
+                  ><span class="icon-name"> {{'eliminar' | uppercase}}</span>
+                </button>
+              </div>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+     <table
+      id="myTableData"
+      ng-if="tableBulildType !== 'builder'"
+      class="text-center table table-bordered bordered table-striped table-condensed datatable"
+      ui-jq="dataTable"
+      ui-refresh="tableRecords"
+      ui-options="tableOptions"
+    >
+      <thead class="text-capitalize">
+        <tr>
+          <th ng-repeat="tdata in tableRecords.header">{{tdata}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in tableRecords.records track by $index">
+          <td ng-repeat="(key, value) in item">
+            {{value}}
+
+            <span ng-if="key === 'ACTION'">
+              <div class="">
+                <button class="btn btn-info">
+                  <span class="ti-eye"></span
+                  ><span class="icon-name"> {{'ver detalle' | uppercase}}</span>
+                </button>
+
+                <button class="btn btn-danger">
+                  <span class="ti-trash"></span
+                  ><span class="icon-name"> {{'eliminar' | uppercase}}</span>
+                </button>
+              </div>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
