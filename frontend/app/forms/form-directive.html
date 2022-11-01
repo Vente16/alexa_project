@@ -135,7 +135,7 @@
             {{selecOption}}
           </option>
         </select>
-        
+
         <div
           ng-show="{{'form.'+item.dbfield+'.$dirty &&
           form.'+item.dbfield+'.$invalid'}}"
@@ -241,7 +241,7 @@
   <button
     ng-if="ngTypeForm !== 'builder'"
     class="btn btn-success text-uppercase"
-    type="submitForm"
+    type="submit"
     ng-click="submitForm()"
   >
     {{ngButtonText}}
