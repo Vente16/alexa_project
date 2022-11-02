@@ -12,18 +12,10 @@ angular
         templateUrl: 'app/tables/tables-builder.html',
         controller: 'TablesBuilderController',
       })
-      /* .when('/tutorials', {
-      templateUrl: 'form-builder.html',
-      //controller: 'tutorialsController',
-    }) */
-      /*.when('/courses', {
-      templateUrl: 'courses.html',
-      controller: 'coursesController',
-    })
-    .when('/projectideas', {
-      templateUrl: 'projectideas.html',
-      controller: 'projectideasController',
-    }) */
+      .when('/forms', {
+        templateUrl: 'app/forms/form-builder.html',
+        controller: 'FormBuilderController',
+      })
       .otherwise({ redirectTo: '/' });
   }
 

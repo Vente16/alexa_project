@@ -1,17 +1,17 @@
-<form name="myForm" role="form">
+<form name="myForm" role="form" id="dinamycForm" ng-model="formData">
   <div class="form-group" ng-repeat="item in fields track by $index">
     <ng-form name="form">
       <div ng-if="item.type === 'text'" class="form-group">
         <label for="_field_{{$index}}">{{item.name | uppercase}}</label>
         <input
           type="text"
-          class="form-control"
+          class="form-control input"
           id="_field_{{$index}}"
           name="{{item.dbfield}}"
           placeholder="Ingresa {{item.name | lowercase}}"
           ng-pattern="item.rules"
           ng-required="{{item.required}}"
-          data-ng-model="field.value"
+          data-ng-model="item.value"
         />
 
         <div
@@ -42,13 +42,13 @@
           type="file"
           ng-file-preview
           file-model="file"
-          class="form-control"
+          class="form-control input"
           id="_field_{{$index}}"
           name="{{item.dbfield}}"
           placeholder="Ingresa {{item.name | lowercase}}"
           ng-pattern="item.rules"
           ng-required="{{item.required && ngTypeForm !== 'update'}}"
-          data-ng-model="field.value"
+          data-ng-model="item.value"
         />
 
         <br />
@@ -78,6 +78,12 @@
 
       <div ng-if="item.type === 'options'">
         <b class="text-muted mb-3 mt-4 d-block">{{item.name | uppercase}}</b>
+        <input
+          type="hidden"
+          name="{{item.dbfield}}"
+          class="input"
+          value="{{item.value}}"
+        />
         <div
           class="custom-control custom-radio custom-control-inline"
           ng-repeat="radio in item.options track by $index"
@@ -86,10 +92,10 @@
             type="radio"
             checked
             id="_customRadio{{$index}}"
-            name="{{item.dbfield}}"
             class="custom-control-input"
             ng-required="{{item.required}}"
-            data-ng-model="field.value"
+            value="{{radio}}"
+            data-ng-model="item.value"
           />
           <label class="custom-control-label h7" for="_customRadio{{$index}}"
             >{{radio}}</label
@@ -113,11 +119,11 @@
       <div ng-if="item.type === 'select'" class="form-group">
         <label for="field_{{$index}}">{{item.name | uppercase}}</label>
         <select
-          class="form-control"
+          class="form-control input"
           id="_field_{{$index}}"
           name="{{item.dbfield}}"
           ng-required="{{item.required}}"
-          data-ng-model="field.value"
+          data-ng-model="item.value"
         >
           <option value="" ng-if="!item.value">Selecciona una opción</option>
           <option
@@ -129,9 +135,7 @@
             {{selecOption}}
           </option>
         </select>
-        <small class="form-text text-muted"
-          >We'll never share your email with anyone else.</small
-        >
+
         <div
           ng-show="{{'form.'+item.dbfield+'.$dirty &&
           form.'+item.dbfield+'.$invalid'}}"
@@ -150,14 +154,14 @@
         <label for="field_{{$index}}">{{item.name | uppercase}}</label>
         <textarea
           type="text"
-          class="form-control"
+          class="form-control input"
           id="_field_{{$index}}"
           name="{{item.dbfield}}"
           ng-required="{{item.required}}"
-          data-ng-model="field.value"
+          data-ng-model="item.value"
           ng-pattern="item.rules"
         >
-          {{field.value}}</textarea
+          {{item.value}}</textarea
         >
         <div
           ng-show="{{'form.'+item.dbfield+'.$dirty &&
@@ -190,11 +194,11 @@
       <div ng-if="item.type === 'checkbox'" class="form-check form-group">
         <input
           type="checkbox"
-          class="form-check-input"
+          class="form-check-input input"
           id="_field_{{$index}}"
           name="{{item.dbfield}}"
           ng-required="{{item.required}}"
-          data-ng-model="field.value"
+          data-ng-model="item.value"
         />
         <label class="form-check-label h7" for="_field_{{$index}}"
           >{{item.name | uppercase}}</label
@@ -234,4 +238,12 @@
       <br />
     </div>
   </div>
+  <button
+    ng-if="ngTypeForm !== 'builder'"
+    class="btn btn-success text-uppercase"
+    type="submit"
+    ng-click="submitForm()"
+  >
+    {{ngButtonText}}
+  </button>
 </form>
