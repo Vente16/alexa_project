@@ -9,6 +9,7 @@ angular
     return {
       getTableBuilder: getTableBuilder,
       saveTableBuilder: saveTableBuilder,
+      getDatatable: getDatatable,
     };
 
     function getTableBuilder() {
@@ -27,24 +28,39 @@ angular
       }
     }
 
-    function saveTableBuilder(data){
-        return $http({
-          method: 'POST',
-          url: `${config.apiUrl}/api/tables/builder`,
-          data: data,
-          headers: { 'Content-Type': 'application/json' },
-        })
-          .then(saveTableBuilderComplete)
-          .catch(saveTableBuilderFailed);
+    function saveTableBuilder(data) {
+      return $http({
+        method: 'POST',
+        url: `${config.apiUrl}/api/tables/builder`,
+        data: data,
+        headers: { 'Content-Type': 'application/json' },
+      })
+        .then(saveTableBuilderComplete)
+        .catch(saveTableBuilderFailed);
 
-        function saveTableBuilderComplete(response) {
-          return response.data;
-        }
+      function saveTableBuilderComplete(response) {
+        return response.data;
+      }
 
-        function saveTableBuilderFailed(error) {
-          //console.log('errror:');
-          //console.error('XHR Failed for tables.' + error.message);
-        }
+      function saveTableBuilderFailed(error) {
+        //console.log('errror:');
+        //console.error('XHR Failed for tables.' + error.message);
+      }
+    }
 
+    function getDatatable(idBuilder) {
+      return $http
+        .get(`${config.apiUrl}/api/dataTable/${idBuilder}`)
+        .then(getDatatableComplete)
+        .catch(getDatatableFailed);
+
+      function getDatatableComplete(response) {
+        return response.data;
+      }
+
+      function getDatatableFailed(error) {
+        //console.log('errror:');
+        //console.error('XHR Failed for tables.' + error.message);
+      }
     }
   }

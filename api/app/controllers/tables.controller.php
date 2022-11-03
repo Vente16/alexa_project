@@ -45,4 +45,19 @@ class TablesController
             ->withHeader("Content-Type", "application/json")
             ->write(json_encode($info));
     }
+
+     public static function dinamycTables(\Slim\Http\Request $request, \Slim\Http\Response $response, $args)
+    {
+        $builder = $args['builder'];
+        $table = new Table();
+
+        $info = $table->getDinamycTable($builder);
+
+        return $response
+            ->withStatus(200)
+            ->withHeader("Content-Type", "application/json")
+            ->write(json_encode($info));
+    }
+
+
 }

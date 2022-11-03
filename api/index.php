@@ -28,6 +28,7 @@ $app = new \Slim\App();
 // GET requests
 $app->get("/", "HomeController:index");
 $app->get("/tables/fileds", "TablesController::getTables");
+$app->get("/dataTable[/{builder}]", "TablesController::dinamycTables");
 
 // POST requests
 $app->post("/tables/builder", "TablesController::saveBuilder");
