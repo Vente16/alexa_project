@@ -46,4 +46,32 @@ class Table
 
         return $data;
     }
+
+    public function saveTableBuilder($name, $table, $fields, $builder, $id_user = 1)
+    {
+        $data = array();
+
+        try {
+            $sql = "INSERT INTO TABLES_BUILDER (NAME, NAME_TABLE, FIELDS, BUILDER, ID_USER) VALUES ('$name', '$table', '$fields', '$builder', $id_user);";
+
+            $query = $this->con->prepare($sql);
+
+            if ($query->execute()) {
+                $data['data'] = array(
+                    'name' => $name,
+                    'table:' => $table,
+                    'fileds' => $fileds,
+                    'builder' => $builder
+                );
+
+                $data['message'] = 'Table builder saved successfully';
+                $data['statusCode'] = 200;
+            }
+        } catch (PDOException $e) {
+            $data['statusCode'] = 500;
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
 }

@@ -6,9 +6,9 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'app/forms/form-builder.html',
-        controller: 'FormBuilderController',
+        //controller: 'MainController',
       })
-      .when('/tables', {
+      .when('/tables/new', {
         templateUrl: 'app/tables/tables-builder.html',
         controller: 'TablesBuilderController',
       })

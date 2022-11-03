@@ -8,7 +8,12 @@
           <div>
             <div class="form-group">
               <label for="nameBuilder">Nombre del builder</label>
-              <input type="text" class="form-control" />
+              <input
+                type="text"
+                class="form-control"
+                ng-model="builderName"
+                required
+              />
             </div>
             <div class="form-group">
               <label for="tableName">Nombre de la tabla</label>
@@ -18,6 +23,7 @@
                 name="tableName"
                 ng-model="tableSelected"
                 ng-change="selectChange()"
+                required
               >
                 <option value="">Selecciona un elemento</option>
                 <option ng-value="key" ng-repeat="(key, value) in tableNames">
@@ -25,9 +31,13 @@
                 </option>
               </select>
             </div>
-            <button class="btn btn-success" ng-click="buildTable()">
-          Crear builder
-        </button>
+            <button
+              class="btn btn-success text-uppercase"
+              type="button"
+              ng-click="buildTable()"
+            >
+              Crear builder
+            </button>
           </div>
         </div>
       </div>
@@ -65,13 +75,16 @@
 
   <div class="row">
     <div class="col-md-12 mt-5">
-      <div class="card">
-        <div class="card-body">
+      <div class="card" ng-show="tableSelected && builderName">
+        <button class="btn btn-info text-uppercase" ng-click="toogleTable()">
+           <span ng-show="showTable">Cerrar <i class="fa fa-close" style="font-size: 15px"></i></span>
+           <span ng-show="!showTable">Abrir <i class="fa fa-sort-amount-asc" style="font-size: 15px"></i>
+        </button>
+        <div class="card-body" ng-show="showTable">
           <ng-data-table
             id="dataTableDinamyc"
             table-records="dataTableInfo"
             table-options="dataTableOpt"
-            controller-name="TablesBuilderController"
             ng-show="dataTableInfo.records.length > 0"
             table-bulild-type="builder"
           >
@@ -84,7 +97,7 @@
   <div class="col-md-12 mt-5">
     <div class="card">
       <div class="card-body row justify-content-center align-self-center">
-        <button class="btn btn-dark" type="button">
+        <button class="btn btn-dark text-uppercase" type="button" ng-click="saveBuilder()">
           Registrar builder
         </button>
       </div>
