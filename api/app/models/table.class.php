@@ -74,4 +74,36 @@ class Table
 
         return $data;
     }
+
+    public function getDinamycTable($builder)
+    {
+        $data = array();
+
+        try {
+            $sql = "CALL GET_DIMANYC_TABLE('$builder')";
+
+            $query = $this->con->prepare($sql);
+
+            if ($query->execute()) {
+
+                $rows = $query->fetchAll(PDO::FETCH_ASSOC);
+                $header = array_keys($rows[0]);
+
+                $data['data'] = array(
+                    'records' => [],
+                    'header' => []
+                );
+
+                $data['data']['records'] = $rows;
+                $data['data']['header']  = $header;
+                $data['statusCode'] = 200;
+
+            }
+        } catch (PDOException $e) {
+            $data['statusCode'] = 500;
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
 }

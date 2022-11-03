@@ -8,6 +8,6 @@ angular
     $scope.testing = 'Oeee llave';
     $scope.toogleSidebar = function () {
       SideBarservice.toogle();
-      $rootScope.$broadcast('sidebarEvent', 'toogle');
+      $scope.$emit('sidebarEvent', 'toogle');
     };
   }
