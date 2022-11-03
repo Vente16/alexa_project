@@ -29,4 +29,7 @@ $app = new \Slim\App();
 $app->get("/", "HomeController:index");
 $app->get("/tables/fileds", "TablesController::getTables");
 
+// POST requests
+$app->post("/tables/builder", "TablesController::saveBuilder");
+
 $app->run();

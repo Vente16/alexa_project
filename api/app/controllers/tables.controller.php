@@ -28,4 +28,21 @@ class TablesController
             ->withHeader("Content-Type", "application/json")
             ->write(json_encode($tables));
     }
+
+    public static function saveBuilder(\Slim\Http\Request $request, \Slim\Http\Response $response, $args)
+    {
+        $table = new Table();
+        $allPostPutVars = $request->getParsedBody();
+        $nameBuilder = $allPostPutVars['name'];
+        $nameTable = $allPostPutVars['tableName'];
+        $fields = $allPostPutVars['filedsFilteredJoined'];
+        $builder = $allPostPutVars['builder'];
+
+        $info = $table->saveTableBuilder($nameBuilder,$nameTable,  $fields, $builder);
+
+        return $response
+            ->withStatus(200)
+            ->withHeader("Content-Type", "application/json")
+            ->write(json_encode($info));
+    }
 }
