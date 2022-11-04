@@ -2,6 +2,7 @@ angular
   .module('forms')
   .directive('ngBuildForm', ngBuildForm);
 
+
   function ngBuildForm() {
     return {
       restrict: 'E',
@@ -10,8 +11,8 @@ angular
         ngTypeForm: '@',
         ngButtonText: '@',
       },
-      controller: '@',
-      name: 'controllerName',
+      //controller: '@',
+      //name: 'controllerName',
       templateUrl: 'app/forms/form-directive.html',
       link: function (scope, element, att) {
         scope.deleteField = function (index) {
@@ -30,8 +31,7 @@ angular
               }
             }
           });
-
-          scope.$parent.submitData(data);
+          scope.$emit('formSubmitted', data);
         };
       },
     };

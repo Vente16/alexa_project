@@ -8,6 +8,15 @@ angular
         templateUrl: 'app/forms/form-builder.html',
         //controller: 'MainController',
       })
+      .when('/products', {
+        templateUrl: 'app/products/form.productos.html',
+        controller: 'ProductosController',
+        resolve: {
+          FormsPrepared: function (FormService) {
+            return FormService.getFormBuilder(3);
+          },
+        },
+      })
       .when('/tables', {
         templateUrl: 'app/tables/tables.html',
         controller: 'TablesController',

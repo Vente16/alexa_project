@@ -1,4 +1,9 @@
-var app = angular.module('alexaApp', ['ngRoute', 'forms', 'tables']);
+var app = angular.module('alexaApp', [
+  'ngRoute',
+  'forms',
+  'tables',
+  'products',
+]);
 
 const MODULES = [
   {

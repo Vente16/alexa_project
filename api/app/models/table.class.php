@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/connection.class.php';
+require_once __DIR__ . '/connection.class.php';
 
 class Table
 {

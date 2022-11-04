@@ -1,4 +1,4 @@
-<form name="myForm" role="form" id="dinamycForm" ng-model="formData">
+<form name="myForm" role="form" id="dinamycForm" ng-model="formData" ng-submit="submitForm()">
   <div class="form-group" ng-repeat="item in fields track by $index">
     <ng-form name="form">
       <div ng-if="item.type === 'text'" class="form-group">
@@ -242,7 +242,6 @@
     ng-if="ngTypeForm !== 'builder'"
     class="btn btn-success text-uppercase"
     type="submit"
-    ng-click="submitForm()"
   >
     {{ngButtonText}}
   </button>
