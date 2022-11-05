@@ -14,7 +14,6 @@ class Form
 
     public function getFormsBuilt($builder)
     {
-
         $data = array();
 
         try {
@@ -67,7 +66,6 @@ class Form
         $data = array();
 
         try {
-
             $query = $this->con->prepare($sql);
 
             if ($query->execute()) {
@@ -84,4 +82,49 @@ class Form
         return $data;
     }
 
+    public function getFormToUpdate($id, $table)
+    {
+        $data = array();
+
+        try {
+            $sql = "SELECT t.*, fb.BUILDER FROM `$table`
+                t INNER JOIN FORMS_BUILDER  fb
+                ON t.FORM_BUILDER_ID = fb.ID
+                WHERE t.ID = '$id'";
+
+            $query = $this->con->prepare($sql);
+
+            if ($query->execute()) {
+                $info = $query->fetchAll(PDO::FETCH_ASSOC);
+                $data['data'] = $info;
+                $data['statusCode'] = 200;
+            }
+        } catch (PDOException $e) {
+            $data['statusCode'] = 500;
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
+
+    public function updateDataForm($sql, $infoToSave)
+    {
+        $data = array();
+
+        try {
+            $query = $this->con->prepare($sql);
+
+            if ($query->execute()) {
+               $data['data'] = $infoToSave;
+
+               $data['message'] = 'Form data updated successfully';
+               $data['statusCode'] = 200;
+             }
+        } catch (PDOException $e) {
+            $data['statusCode'] = 500;
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
 }
