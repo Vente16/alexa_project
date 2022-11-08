@@ -47,12 +47,13 @@
           name="{{item.dbfield}}"
           placeholder="Ingresa {{item.name | lowercase}}"
           ng-pattern="item.rules"
+          accept="image/*"
           ng-required="{{item.required && ngTypeForm !== 'update'}}"
           data-ng-model="item.value"
         />
 
         <br />
-        <img src="" class="imagePreview" />
+        <img ng-check-format image-source="item.value" class="imagePreview" />
 
         <div
           ng-show="{{'form.'+item.dbfield+'.$dirty &&
@@ -238,11 +239,13 @@
       <br />
     </div>
   </div>
+
   <button
-    ng-if="ngTypeForm !== 'builder'"
+    ng-if="ngTypeForm !== 'builder' && fields.length > 0"
     class="btn btn-success text-uppercase"
-    type="submit"
+    type="button"
     ng-click="submitForm()"
+    ng-disabled="myForm.$invalid"
   >
     {{ngButtonText}}
   </button>

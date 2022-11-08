@@ -10,8 +10,8 @@ angular
         ngTypeForm: '@',
         ngButtonText: '@',
       },
-      controller: '@',
-      name: 'controllerName',
+      //controller: '@',
+      //name: 'controllerName',
       templateUrl: 'app/forms/form-directive.html',
       link: function (scope, element, att) {
         scope.deleteField = function (index) {
@@ -19,10 +19,14 @@ angular
         };
 
         scope.submitForm = function () {
-          let form = angular.element('#dinamycForm');
+          const form = angular.element('#dinamycForm');
           const data = new FormData();
           Array.from(form[0].elements).forEach((input) => {
-            if (input.className.includes('input') && input.type !== 'radio') {
+            if (
+              input.className.includes('input') &&
+              input.type !== 'radio' &&
+              input.value !== ''
+            ) {
               data.append(input.name, input.value);
               if (input.type === 'file') {
                 let trueValueFile = input.files[0];
@@ -30,8 +34,7 @@ angular
               }
             }
           });
-
-          scope.$parent.submitData(data);
+          scope.$emit('formSubmitted', data);
         };
       },
     };

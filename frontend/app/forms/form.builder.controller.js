@@ -2,9 +2,9 @@ angular
   .module('forms')
   .controller('FormBuilderController', FormBuilderController);
 
-  FormBuilderController.$inject = ['$scope'];
+  FormBuilderController.$inject = ['$scope', 'FormService'];
 
-  function FormBuilderController($scope) {
+  function FormBuilderController($scope, FormService) {
     $scope._ = _;
     $scope.option = '';
     $scope.builder = true;
@@ -20,6 +20,7 @@ angular
     };
 
     $scope.info = [];
+    $scope.formName = '';
 
     $scope.addOption = function (option) {
       $scope.field.options = $scope._.uniq([...$scope.field.options, option]);
@@ -55,11 +56,29 @@ angular
       }
     };
 
-    $scope.submitData = function(data){
+    $scope.submitData = function (data) {
       // do something :D do not worried about files c:
       console.log('data parent', data);
-    }
+    };
 
+    $scope.createForm = function () {
+      const deepClone = $scope._.cloneDeep($scope.info);
+      //console.log(deepClone);
+      const formToCreate = {
+        name: $scope.formName,
+        builder: JSON.stringify(deepClone),
+      };
+
+      FormService.saveFormBuilder(formToCreate)
+        .then((res) => {
+          console.log('todo bien: D');
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log('error :c');
+        });
+     // console.log(formToCreate);
+    };
   }
 
 

@@ -21,6 +21,7 @@ require __ROOT__."/cors.php";
 require __ROOT__."/vendor/autoload.php";
 require _CONTROLLERS_."/home.controller.php";
 require _CONTROLLERS_."/tables.controller.php";
+require _CONTROLLERS_."/forms.controller.php";
 
 $app = new \Slim\App();
 
@@ -29,8 +30,14 @@ $app = new \Slim\App();
 $app->get("/", "HomeController:index");
 $app->get("/tables/fileds", "TablesController::getTables");
 $app->get("/dataTable[/{builder}]", "TablesController::dinamycTables");
+$app->get("/forms[/{id}]", "FormsController::getFormsBuilt");
+$app->get("/formsData[/{id}/{table}]", "FormsController::getFormToUpdate");
+
 
 // POST requests
 $app->post("/tables/builder", "TablesController::saveBuilder");
+$app->post("/forms/builder", "FormsController::saveBulderForm");
+$app->post("/forms/saveData", "FormsController::saveDataForm");
+$app->post("/forms/update", "FormsController::updateFormData");
 
 $app->run();

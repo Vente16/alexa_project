@@ -14,7 +14,7 @@ if (!defined("_MODELS_")) {
     define("_MODELS_", __ROOT__."/app/models");
 }
 
-require _MODELS_ . "/table.class.php";
+require_once _MODELS_ . "/table.class.php";
 
 class TablesController
 {

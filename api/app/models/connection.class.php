@@ -6,7 +6,7 @@ if (!defined("__ROOT__")) {
     define("__ROOT__", dirname(dirname(dirname(__FILE__))));
 }
 
-require __ROOT__."/vendor/autoload.php";
+require_once __ROOT__."/vendor/autoload.php";
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
