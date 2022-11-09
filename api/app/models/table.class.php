@@ -60,7 +60,7 @@ class Table
                 $data['data'] = array(
                     'name' => $name,
                     'table:' => $table,
-                    'fileds' => $fileds,
+                    'fileds' => $fields,
                     'builder' => $builder
                 );
 

@@ -14,27 +14,27 @@
       </thead>
       <tbody>
         <tr ng-repeat="item in tableRecords.records track by $index">
-          <td ng-repeat="(key, value) in item">
+          <td ng-repeat="(key, value) in item" ng-file-show td-value="value">
             {{value}}
 
             <span ng-if="key === 'ACTION'">
               <div class="">
-                <button class="btn btn-info">
+                <a href="#!{{tablePath}}/edit/{{item.ID}}">
                   <span class="ti-eye"></span
-                  ><span class="icon-name"> {{'ver detalle' | uppercase}}</span>
-                </button>
+                  ><span class="icon-name"> {{'' | uppercase}}</span>
+                </a>
 
-                <button class="btn btn-danger">
+                <a href="#">
                   <span class="ti-trash"></span
-                  ><span class="icon-name"> {{'eliminar' | uppercase}}</span>
-                </button>
+                  ><span class="icon-name"> {{'' | uppercase}}</span>
+                </a>
               </div>
             </span>
           </td>
         </tr>
       </tbody>
     </table>
-     <!--<table
+    <!--<table
       id="myTableData"
       ng-if="tableBulildType !== 'builder'"
       class="text-center table table-bordered bordered table-striped table-condensed datatable"

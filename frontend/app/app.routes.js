@@ -1,6 +1,18 @@
 angular
   .module('alexaApp')
-  .config(routes);
+  .config(routes)
+  .run(titleConfig);
+
+  titleConfig.$inject = ['$rootScope'];
+
+  function titleConfig($rootScope) {
+    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+      $rootScope.title = current.$$route.title;
+      $rootScope.subTitle = current.$$route.subTitle;
+      $rootScope.module = current.$$route.module;
+      $rootScope.main = current.$$route.main;
+    });
+  }
 
   function routes($routeProvider) {
     $routeProvider
@@ -13,15 +25,37 @@ angular
         //controller: 'MainController',
       })
       .when('/products', {
-        templateUrl: 'app/products/form.productos.html',
-        controller: 'ProductosController',
+        title: 'Productos',
+        module: 'Productos',
+        main: '/products',
+        subTitle: 'Listado de productos',
+        templateUrl: 'app/products/products.list.html',
+        controller: 'ProductsController',
+        resolve: {
+          TablesPrepService: function (TablesService) {
+            return TablesService.getDatatable(7);
+          },
+          /*FormsPrepared: function (FormService) {
+            return FormService.getFormBuilder(3);
+          }, */
+        },
+      })
+      .when('/products/new', {
+        title: 'Nuevo producto',
+        module: 'Productos',
+        main: '/products',
+        templateUrl: 'app/products/form.products.html',
+        controller: 'ProductosNewController',
         resolve: {
           FormsPrepared: function (FormService) {
-            return FormService.getFormBuilder(3);
+            return FormService.getFormBuilder(4);
           },
         },
       })
       .when('/products/edit/:id', {
+        title: 'Editar producto',
+        module: 'Productos',
+        main: '/products',
         templateUrl: 'app/products/products.edit.html',
         controller: 'ProductEditController',
         resolve: {
