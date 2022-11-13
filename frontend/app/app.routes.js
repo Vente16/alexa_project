@@ -3,10 +3,21 @@ angular
   .config(routes)
   .run(titleConfig);
 
-  titleConfig.$inject = ['$rootScope'];
+  titleConfig.$inject = ['$rootScope', '$route', '$location', 'AuthService'];
 
-  function titleConfig($rootScope) {
+  function titleConfig($rootScope, $route, $location, AuthService) {
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+      let token = AuthService.checkToken();
+      if (!token) {
+        $location.path('/login');
+        $location.replace();
+      }
+
+      if (token && $location.path() === '/login') {
+        $location.path('/');
+        $location.replace();
+      }
+
       $rootScope.title = current.$$route.title;
       $rootScope.subTitle = current.$$route.subTitle;
       $rootScope.module = current.$$route.module;
@@ -19,6 +30,11 @@ angular
       .when('/', {
         templateUrl: 'app/forms/form-builder.html',
         //controller: 'MainController',
+      })
+      .when('/login', {
+        title: 'Iniciar Session',
+        templateUrl: 'app/auth/login.html',
+        controller: 'LoginController',
       })
       .when('/404', {
         templateUrl: 'app/layout/404.html',
