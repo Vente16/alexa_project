@@ -46,12 +46,29 @@ class TablesController
             ->write(json_encode($info));
     }
 
-     public static function dinamycTables(\Slim\Http\Request $request, \Slim\Http\Response $response, $args)
+    public static function dinamycTables(\Slim\Http\Request $request, \Slim\Http\Response $response, $args)
     {
         $builder = $args['builder'];
         $table = new Table();
 
         $info = $table->getDinamycTable($builder);
+
+        return $response
+            ->withStatus(200)
+            ->withHeader("Content-Type", "application/json")
+            ->write(json_encode($info));
+    }
+
+     public static function deleteItem(\Slim\Http\Request $request, \Slim\Http\Response $response, $args)
+    {
+        $allRequestVars = $request->getParsedBody();
+
+        $module = $allRequestVars['module'];
+        $id = $allRequestVars['id'];
+
+        $table = new Table();
+
+        $info = $table->deleteItem($module, $id);
 
         return $response
             ->withStatus(200)

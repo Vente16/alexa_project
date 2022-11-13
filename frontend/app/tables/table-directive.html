@@ -14,27 +14,29 @@
       </thead>
       <tbody>
         <tr ng-repeat="item in tableRecords.records track by $index">
-          <td ng-repeat="(key, value) in item">
+          <td ng-repeat="(key, value) in item" ng-file-show td-value="value">
             {{value}}
 
             <span ng-if="key === 'ACTION'">
               <div class="">
-                <button class="btn btn-info">
+                <a href="#!{{tablePath}}/edit/{{item.ID}}">
                   <span class="ti-eye"></span
-                  ><span class="icon-name"> {{'ver detalle' | uppercase}}</span>
-                </button>
+                  ><span class="icon-name"> {{'' | uppercase}}</span>
+                </a>
 
-                <button class="btn btn-danger">
+                <a href="#" ng-click="deleteFn($event, tableName, item)" data-toggle="modal" data-target="#exampleModal">
                   <span class="ti-trash"></span
-                  ><span class="icon-name"> {{'eliminar' | uppercase}}</span>
-                </button>
+                  ><span class="icon-name"> {{'' | uppercase}}</span>
+                </a>
               </div>
             </span>
           </td>
         </tr>
       </tbody>
     </table>
-     <!--<table
+
+
+    <!--<table
       id="myTableData"
       ng-if="tableBulildType !== 'builder'"
       class="text-center table table-bordered bordered table-striped table-condensed datatable"
@@ -69,5 +71,26 @@
         </tr>
       </tbody>
     </table> -->
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Elemento a eliminar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Recuerde que una vez eliminado este elemento no lo podrá visualizar de nuevo
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" ng-click="launchEvent()">Aceptar</button>
+      </div>
+    </div>
   </div>
 </div>

@@ -33,11 +33,11 @@ $app->get("/dataTable[/{builder}]", "TablesController::dinamycTables");
 $app->get("/forms[/{id}]", "FormsController::getFormsBuilt");
 $app->get("/formsData[/{id}/{table}]", "FormsController::getFormToUpdate");
 
-
 // POST requests
 $app->post("/tables/builder", "TablesController::saveBuilder");
 $app->post("/forms/builder", "FormsController::saveBulderForm");
 $app->post("/forms/saveData", "FormsController::saveDataForm");
 $app->post("/forms/update", "FormsController::updateFormData");
+$app->post("/tables/deleteItem", "TablesController::deleteItem");
 
 $app->run();

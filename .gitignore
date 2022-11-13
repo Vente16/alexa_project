@@ -1,3 +1,4 @@
 /api/vendor
+/api/files
 /node_modules
 .env

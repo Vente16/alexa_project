@@ -49,6 +49,7 @@
           ng-pattern="item.rules"
           accept="image/*"
           ng-required="{{item.required && ngTypeForm !== 'update'}}"
+          file-validation
           data-ng-model="item.value"
         />
 

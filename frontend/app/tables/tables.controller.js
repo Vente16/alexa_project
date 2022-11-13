@@ -19,10 +19,11 @@ angular
   ) {
     $scope._ = _;
     $scope.dataTableConfig = datatableOptions;
+    $scope.serverName = $location.host();
 
     const filterPath = (el) => el.path === $location.path();
     $scope.myModule = [...modules].filter(filterPath)[0];
 
     $scope.dataTableInfo = TablesPrepService.data;
-    
+
   }

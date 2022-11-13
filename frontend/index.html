@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>srtdash - ICO Dashboard</title>
+    <title ng-bind="'Comercializadora OPS &mdash; ' + title">Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico" />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -69,7 +69,7 @@
     <!-- footer area start-->
     <footer>
         <div class="footer-area">
-            <p>© Copyright {{currentYear}}. All right reserved </p>
+            <p>© Copyright {{currentYear}}. Todos los derechos reservados </p>
         </div>
     </footer>
     <!-- footer area end-->
@@ -148,6 +148,7 @@
     <script src="app/main.controller.js"></script>
     <script src="app/layout/sidebar.controller.js"></script>
     <script src="app/layout/header.controller.js"></script>
+    <script src="app/layout/header.title.controller.js"></script>
 
     <!--tables controller-->
     <script src="app/tables/tables.builder.controller.js"></script>
@@ -158,13 +159,17 @@
      <!--productos controller-->
     <script src="app/products/products.controller.js"></script>
     <script src="app/products/products.edit.controller.js"></script>
+    <script src="app/products/products.new.controller.js"></script>
+
 
     <!-- directives -->
     <script src="app/forms/forms.directive.js"></script>
     <script src="app/forms/image.directive.js"></script>
     <script src="app/files/file.model.directive.js"></script>
     <script src="app/files/file.preview.directive.js"></script>
+    <script src="app/files/file.validation.directive.js"></script>
     <script src="app/tables/tables.directive.js"></script>
+    <script src="app/tables/image.format.directive.js"></script>
 
 </body>
 

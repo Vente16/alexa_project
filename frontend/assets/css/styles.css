@@ -775,6 +775,16 @@ ul.breadcrumbs {
             user-select: none;
 }
 
+.container-content {
+  background-color: #fff; padding: 20px
+}
+
+.content-left {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+
 .user-name i {
     margin-left: 10px;
     font-size: 21px;
