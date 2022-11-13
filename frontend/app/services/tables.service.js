@@ -10,6 +10,7 @@ angular
       getTableBuilder: getTableBuilder,
       saveTableBuilder: saveTableBuilder,
       getDatatable: getDatatable,
+      deleteItemFromTable: deleteItemFromTable,
     };
 
     function getTableBuilder() {
@@ -59,6 +60,26 @@ angular
       }
 
       function getDatatableFailed(error) {
+        //console.log('errror:');
+        //console.error('XHR Failed for tables.' + error.message);
+      }
+    }
+
+    function deleteItemFromTable(data) {
+      return $http({
+        method: 'POST',
+        url: `${config.apiUrl}/api/tables/deleteItem`,
+        data: data,
+        headers: { 'Content-Type': 'application/json' },
+      })
+        .then(deleteItemFromTableComplete)
+        .catch(deleteItemFromTableFailed);
+
+      function deleteItemFromTableComplete(response) {
+        return response.data;
+      }
+
+      function deleteItemFromTableFailed(error) {
         //console.log('errror:');
         //console.error('XHR Failed for tables.' + error.message);
       }

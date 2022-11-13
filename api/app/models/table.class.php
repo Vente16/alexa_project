@@ -106,4 +106,26 @@ class Table
 
         return $data;
     }
+
+     public function deleteItem($table, $id)
+    {
+        $data = array();
+
+        try {
+            $sql = "UPDATE $table t SET ESTADO = 0 WHERE  t.ID = $id";
+
+            $query = $this->con->prepare($sql);
+
+            if ($query->execute()) {
+                $data['message'] = 'Item deleted successfully';
+                $data['statusCode'] = 200;
+
+            }
+        } catch (PDOException $e) {
+            $data['statusCode'] = 500;
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
 }

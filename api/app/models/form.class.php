@@ -90,7 +90,7 @@ class Form
             $sql = "SELECT t.*, fb.BUILDER FROM `$table`
                 t INNER JOIN FORMS_BUILDER  fb
                 ON t.FORM_BUILDER_ID = fb.ID
-                WHERE t.ID = '$id'";
+                WHERE t.ID = '$id' AND t.ESTADO = 1";
 
             $query = $this->con->prepare($sql);
 
