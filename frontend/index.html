@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="alexaApp">
+<html lang="es" ng-app="alexaApp">
 
 <head>
     <meta charset="utf-8">
@@ -38,7 +38,11 @@
         <div class="loader"></div>
     </div>
 
-    <div class="page-container" ng-class="{'sbar_collapsed' : toogle, 'page-container' : !toogle}">
+    <div ng-if="!token">
+        <main ng-view></main>
+    </div>
+
+    <div ng-if="token !== null" class="page-container" ng-class="{'sbar_collapsed' : toogle, 'page-container' : !toogle}">
         <!-- sidebar menu area start -->
         <ng-include src="'app/layout/sidebar.html'"></ng-include>
 
@@ -126,13 +130,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.0.0/ui-bootstrap-tpls.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-utils/0.1.1/angular-ui-utils.min.js"></script>
     <script src="app/libs/angular-datatables.min.js"></script>
+    <script src="https://cdn.rawgit.com/auth0/angular-jwt/master/dist/angular-jwt.js"></script>
 
     <!-- My modules -->
     <script src="app/files/files.module.js"></script>
     <script src="app/forms/forms.module.js"></script>
     <script src="app/tables/tables.module.js"></script>
     <script src="app/products/products.module.js"></script>
-
+    <script src="app/auth/auth.module.js"></script>
 
     <!-- App config -->
     <script src="app/app.module.js"></script>
@@ -143,12 +148,14 @@
     <script src="app/services/files.service.js"></script>
     <script src="app/services/forms.service.js"></script>
     <script src="app/services/tables.service.js"></script>
+    <script src="app/services/auth.service.js"></script>
 
     <!--controllers -->
     <script src="app/main.controller.js"></script>
     <script src="app/layout/sidebar.controller.js"></script>
     <script src="app/layout/header.controller.js"></script>
     <script src="app/layout/header.title.controller.js"></script>
+    <script src="app/auth/login.controller.js"></script>
 
     <!--tables controller-->
     <script src="app/tables/tables.builder.controller.js"></script>

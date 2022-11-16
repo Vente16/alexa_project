@@ -1,5 +1,7 @@
 var app = angular.module('alexaApp', [
   'ngRoute',
+  'angular-jwt',
+  'auth',
   'forms',
   'tables',
   'products',
@@ -101,6 +103,7 @@ angular
     apiUrl: 'http://localhost:8888/alexa',
     baseUrl: '/',
     enableDebug: true,
+    token: localStorage.getItem('token')
   })
   .constant('datatableOptions', DATA_TABLE_OPTIONS)
   .constant('_', window._)

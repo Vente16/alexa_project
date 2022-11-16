@@ -22,6 +22,7 @@ require __ROOT__."/vendor/autoload.php";
 require _CONTROLLERS_."/home.controller.php";
 require _CONTROLLERS_."/tables.controller.php";
 require _CONTROLLERS_."/forms.controller.php";
+require _CONTROLLERS_."/users.controller.php";
 
 $app = new \Slim\App();
 
@@ -39,5 +40,6 @@ $app->post("/forms/builder", "FormsController::saveBulderForm");
 $app->post("/forms/saveData", "FormsController::saveDataForm");
 $app->post("/forms/update", "FormsController::updateFormData");
 $app->post("/tables/deleteItem", "TablesController::deleteItem");
+$app->post("/users/login", "UsersController::login");
 
 $app->run();
