@@ -1,29 +1,59 @@
 <?php
 
-require_once __DIR__ . '/connection.class.php';
+use PHPUnit\Framework\TestCase;
 
-class Table
+class TableClass extends TestCase
 {
-    private $con;
 
-    public function __construct()
-    {
-        $con = new Connection();
-        $this->con = $con->getConnection();
+    private $classTable;
+
+    public function setUp(): void {
+        $this->classTable = new Table();
     }
 
-    public function groupByTableName($array): array
+    public function testGroupByTableName(): void {
+
+       $array_data = array(
+        array('TABLE_NAME' => 'CLIENTS', 'COLUMN_NAME' => 'ID'),
+        array('TABLE_NAME' => 'CLIENTS', 'COLUMN_NAME' => 'NOMBRE'),
+        array('TABLE_NAME' => 'CLIENTS', 'COLUMN_NAME' => 'APELLIDO'),
+        array('TABLE_NAME' => 'CLIENTS', 'COLUMN_NAME' => 'TELEFONO'),
+        array('TABLE_NAME' => 'CLIENTS', 'COLUMN_NAME' => 'DOCUMENTO'),
+        array('TABLE_NAME' => 'PRODUCTS', 'COLUMN_NAME' => 'ID'),
+        array('TABLE_NAME' => 'PRODUCTS', 'COLUMN_NAME' => 'NOMBRE'),
+        array('TABLE_NAME' => 'PRODUCTS', 'COLUMN_NAME' => 'FOTO')
+       );
+
+      $array_expected = array(
+        'CLIENTS' => array('ID', 'NOMBRE', 'APELLIDO', 'TELEFONO', 'DOCUMENTO'),
+        'PRODUCTS' => array('ID', 'NOMBRE', 'FOTO')
+        );
+
+       $this->assertEquals($array_expected,  $this->classTable->groupByTableName($array_data));
+    }
+
+     public function testGroupByTableNameNull(): void {
+
+       $array_data = array();
+       $array_expected = array();
+
+       $this->assertEquals($array_data,  $this->classTable->groupByTableName($array_expected));
+
+    }
+
+      public function testGroupByTableNameDiffrentKeys(): void {
+
+       $array_data = array('anykey' => 'testing', 'anotherkey' => 'testing');
+       $array_expected = array();
+       $this->assertEquals($array_expected,  $this->classTable->groupByTableName($array_data));
+
+    }
+    /*
+    private function groupByTableName($array)
     {
         $data = array();
-        
-        if(count($array) == 0) return $data;
-
-        $first_key = array_keys($array)[0];
-
-        if (is_array($array[$first_key])){
-            foreach ($array as $key => $value) {
-                $data[$value['TABLE_NAME']][] = $value['COLUMN_NAME'];
-            }
+        foreach ($array as $key => $value) {
+            $data[$value['TABLE_NAME']][] = $value['COLUMN_NAME'];
         }
         return $data;
     }
@@ -134,5 +164,5 @@ class Table
         }
 
         return $data;
-    }
+    }  */
 }
