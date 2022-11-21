@@ -24,13 +24,18 @@ require _CONTROLLERS_."/tables.controller.php";
 require _CONTROLLERS_."/forms.controller.php";
 require _CONTROLLERS_."/users.controller.php";
 
-$app = new \Slim\App([
+
+$configuration = [
     'settings' => [
         'displayErrorDetails' => true,
-        'debug'               => true,
-        'whoops.editor'       => 'sublime',
-    ]
-]);
+    ],
+];
+
+$c = new \Slim\Container($configuration);
+
+$app = new \Slim\App($c);
+
+
 
 
 // GET requests
