@@ -1,4 +1,6 @@
-app.controller('MainController', MainController);
+angular
+ .module('alexaApp')
+ .controller('MainController', MainController);
 
 MainController.$inject = [
   '$scope',
@@ -7,8 +9,6 @@ MainController.$inject = [
 ];
 
 function MainController($scope, $location, SideBarservice) {
-  var vm = this;
-  $scope.name = 'John';
   $scope.currentYear = new Date().getFullYear();
   $scope.toogle = false;
   $scope.path = $location.path();
@@ -23,7 +23,6 @@ function MainController($scope, $location, SideBarservice) {
   );
 
   $scope.$on('sidebarEvent', function () {
-    console.log('eventt:: adad', 'addada');
     $scope.toogle = SideBarservice.getToogle();
   });
 }

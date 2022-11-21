@@ -1,18 +1,27 @@
 <?php
 
-use Dotenv\Dotenv;
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-if (!defined("__ROOT__")) {
-    define("__ROOT__", dirname(dirname(dirname(__FILE__))));
+
+if (! defined('ABSPATH')) {
+define('ABSPATH', __DIR__ . '/');
 }
 
-require_once __ROOT__."/vendor/autoload.php";
+use Dotenv\Dotenv;
+
+ if (!defined("__ROOT__")) {
+    define("__ROOT__", ABSPATH);
+ }
+
+require_once __ROOT__."vendor/autoload.php";
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-class Connection
-{
+ class Connection
+ {
     private $con;
 
     public function __construct()
@@ -20,7 +29,7 @@ class Connection
         $host = $_SERVER["DB_HOST"];
         $dbname = $_SERVER["DB_NAME"];
         $user = $_SERVER["DB_USER"];
-        $pass = $_SERVER["DB_PASSWORD"];
+        $pass = $_SERVER["DB_PASSWD"];
 
         try {
             $con = new PDO(
@@ -44,4 +53,4 @@ class Connection
     {
         return $this->con;
     }
-}
+ }

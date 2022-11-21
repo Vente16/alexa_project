@@ -1,10 +1,10 @@
 <?php
 
-/*  To display errors
+//To display errors
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-*/
+
 
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -24,11 +24,23 @@ require _CONTROLLERS_."/tables.controller.php";
 require _CONTROLLERS_."/forms.controller.php";
 require _CONTROLLERS_."/users.controller.php";
 
-$app = new \Slim\App();
+
+$configuration = [
+    'settings' => [
+        'displayErrorDetails' => true,
+    ],
+];
+
+$c = new \Slim\Container($configuration);
+
+$app = new \Slim\App($c);
+
+
 
 
 // GET requests
 $app->get("/", "HomeController:index");
+$app->get("/checkCon", "TablesController:checkConnection");
 $app->get("/tables/fileds", "TablesController::getTables");
 $app->get("/dataTable[/{builder}]", "TablesController::dinamycTables");
 $app->get("/forms[/{id}]", "FormsController::getFormsBuilt");

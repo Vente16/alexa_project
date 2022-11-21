@@ -5,17 +5,20 @@ var app = angular.module('alexaApp', [
   'forms',
   'tables',
   'products',
+  'clients',
+  'providers',
+  'users'
 ]);
 
 const MODULES = [
-  {
+  /*{
     name: 'Tablas',
     path: '/tables',
     listBuild: 1,
     icon: 'ti-server',
     nameSecond: 'tables',
     formBuild: 1,
-  },
+  }, */
   {
     name: 'Inicio',
     path: '/',
@@ -32,16 +35,16 @@ const MODULES = [
     nameSecond: 'users',
     formBuild: 1,
   },
-  {
+  /*{
     name: 'Roles y Permisos',
     path: '/roles',
     listBuild: 1,
     icon: 'ti-dashboard',
     nameSecond: 'roles',
     formBuild: 1,
-  },
+  }, */
   {
-    name: 'Ventas',
+    name: 'Ventas (en proceso)',
     path: '/sells',
     listBuild: 1,
     icon: 'ti-receipt',
@@ -57,7 +60,7 @@ const MODULES = [
     formBuild: 1,
   },
   {
-    name: 'Inventario',
+    name: 'Inventario (en proceso)',
     path: '/inventary',
     listBuild: 1,
     icon: 'fa fa-table',

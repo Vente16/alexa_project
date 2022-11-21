@@ -12,24 +12,53 @@
           ng-pattern="item.rules"
           ng-required="{{item.required}}"
           data-ng-model="item.value"
-        />
+          />
 
         <div
           ng-show="{{'form.'+item.dbfield+'.$dirty &&
-          form.'+item.dbfield+'.$invalid'}}"
-        >
+          form.'+item.dbfield+'.$invalid'}}">
           <p
             ng-show="{{'form.'+item.dbfield+'.$error.required'}}"
             class="text-danger"
-            role="alert"
-          >
+            role="alert">
             <strong class="capitalize-text">{{item.name}}</strong> es requerido
           </p>
           <p
             ng-show="{{'form.'+item.dbfield+'.$error.pattern'}}"
             class="text-danger"
-            role="alert"
-          >
+            role="alert">
+            El formato del campo
+            <strong class="capitalize-text">{{item.name}}</strong> es inválido
+          </p>
+        </div>
+      </div>
+
+      <div ng-if="item.type === 'password'" class="form-group">
+        <label for="_field_{{$index}}">{{item.name | uppercase}}</label>
+        <input
+          type="password"
+          class="form-control input"
+          id="_field_{{$index}}"
+          name="{{item.dbfield}}"
+          placeholder="Ingresa {{item.name | lowercase}}"
+          ng-pattern="item.rules"
+          ng-required="{{item.required}}"
+          data-ng-model="item.value"
+          />
+
+        <div
+          ng-show="{{'form.'+item.dbfield+'.$dirty &&
+          form.'+item.dbfield+'.$invalid'}}">
+          <p
+            ng-show="{{'form.'+item.dbfield+'.$error.required'}}"
+            class="text-danger"
+            role="alert">
+            <strong class="capitalize-text">{{item.name}}</strong> es requerido
+          </p>
+          <p
+            ng-show="{{'form.'+item.dbfield+'.$error.pattern'}}"
+            class="text-danger"
+            role="alert">
             El formato del campo
             <strong class="capitalize-text">{{item.name}}</strong> es inválido
           </p>
@@ -51,27 +80,23 @@
           ng-required="{{item.required && ngTypeForm !== 'update'}}"
           file-validation
           data-ng-model="item.value"
-        />
+          />
 
         <br />
         <img ng-check-format image-source="item.value" class="imagePreview" />
-
         <div
           ng-show="{{'form.'+item.dbfield+'.$dirty &&
-          form.'+item.dbfield+'.$invalid'}}"
-        >
+          form.'+item.dbfield+'.$invalid'}}">
           <p
             ng-show="{{'form.'+item.dbfield+'.$error.required'}}"
             class="text-danger"
-            role="alert"
-          >
+            role="alert">
             <strong class="capitalize-text">{{item.name}}</strong> es requerido
           </p>
           <p
             ng-show="{{'form.'+item.dbfield+'.$error.pattern'}}"
             class="text-danger"
-            role="alert"
-          >
+            role="alert">
             El formato del campo
             <strong class="capitalize-text">{{item.name}}</strong> es inválido
           </p>
@@ -85,11 +110,10 @@
           name="{{item.dbfield}}"
           class="input"
           value="{{item.value}}"
-        />
+          />
         <div
           class="custom-control custom-radio custom-control-inline"
-          ng-repeat="radio in item.options track by $index"
-        >
+          ng-repeat="radio in item.options track by $index">
           <input
             type="radio"
             checked
@@ -98,21 +122,17 @@
             ng-required="{{item.required}}"
             value="{{radio}}"
             data-ng-model="item.value"
-          />
-          <label class="custom-control-label h7" for="_customRadio{{$index}}"
-            >{{radio}}</label
-          >
+            />
+          <label class="custom-control-label h7" for="_customRadio{{$index}}">{{radio}}</label>
         </div>
 
         <div
           ng-show="{{'form.'+item.dbfield+'.$dirty &&
-          form.'+item.dbfield+'.$invalid'}}"
-        >
+          form.'+item.dbfield+'.$invalid'}}">
           <p
             ng-show="{{'form.'+item.dbfield+'.$error.required'}}"
             class="text-danger"
-            role="alert"
-          >
+            role="alert">
             <strong class="capitalize-text">{{item.name}}</strong> es requerido
           </p>
         </div>
@@ -125,28 +145,24 @@
           id="_field_{{$index}}"
           name="{{item.dbfield}}"
           ng-required="{{item.required}}"
-          data-ng-model="item.value"
-        >
+          data-ng-model="item.value">
           <option value="" ng-if="!item.value">Selecciona una opción</option>
           <option
             value="{{selecOption}}"
             ng-selected="item.value ===
             selecOption"
-            ng-repeat="selecOption in item.options"
-          >
+            ng-repeat="selecOption in item.options">
             {{selecOption}}
           </option>
         </select>
 
         <div
           ng-show="{{'form.'+item.dbfield+'.$dirty &&
-          form.'+item.dbfield+'.$invalid'}}"
-        >
+          form.'+item.dbfield+'.$invalid'}}">
           <p
             ng-show="{{'form.'+item.dbfield+'.$error.required'}}"
             class="text-danger"
-            role="alert"
-          >
+            role="alert">
             <strong class="capitalize-text">{{item.name}}</strong> es requerido
           </p>
         </div>
@@ -161,31 +177,25 @@
           name="{{item.dbfield}}"
           ng-required="{{item.required}}"
           data-ng-model="item.value"
-          ng-pattern="item.rules"
-        >
-          {{item.value}}</textarea
-        >
+          ng-pattern="item.rules">
+          {{item.value}}</textarea>
         <div
           ng-show="{{'form.'+item.dbfield+'.$dirty &&
-          form.'+item.dbfield+'.$invalid'}}"
-        >
+          form.'+item.dbfield+'.$invalid'}}">
           <div
             ng-show="{{'form.'+item.dbfield+'.$dirty &&
-            form.'+item.dbfield+'.$invalid'}}"
-          >
+            form.'+item.dbfield+'.$invalid'}}">
             <p
               ng-show="{{'form.'+item.dbfield+'.$error.required'}}"
               class="text-danger"
-              role="alert"
-            >
+              role="alert">
               <strong class="capitalize-text">{{item.name}}</strong> es
               requerido
             </p>
             <p
               ng-show="{{'form.'+item.dbfield+'.$error.pattern'}}"
               class="text-danger"
-              role="alert"
-            >
+              role="alert">
               El formato del campo
               <strong class="capitalize-text">{{item.name}}</strong> es inválido
             </p>
@@ -201,23 +211,19 @@
           name="{{item.dbfield}}"
           ng-required="{{item.required}}"
           data-ng-model="item.value"
-        />
-        <label class="form-check-label h7" for="_field_{{$index}}"
-          >{{item.name | uppercase}}</label
-        >
+          />
+        <label class="form-check-label h7" for="_field_{{$index}}">{{item.name |
+          uppercase}}</label>
         <div
           ng-show="{{'form.'+item.dbfield+'.$dirty &&
-          form.'+item.dbfield+'.$invalid'}}"
-        >
+          form.'+item.dbfield+'.$invalid'}}">
           <div
             ng-show="{{'form.'+item.dbfield+'.$dirty &&
-            form.'+item.dbfield+'.$invalid'}}"
-          >
+            form.'+item.dbfield+'.$invalid'}}">
             <p
               ng-show="{{'form.'+item.dbfield+'.$error.required'}}"
               class="text-danger"
-              role="alert"
-            >
+              role="alert">
               <strong class="capitalize-text">{{item.name}}</strong> es
               requerido
             </p>
@@ -228,26 +234,23 @@
     <div ng-if="ngTypeForm === 'builder'">
       <br />
       <div>
-        <span class="pull-right"
-          ><button
+        <span class="pull-right"><button
             type="button"
             class="btn btn-danger"
-            ng-click="deleteField($index)"
-          >
-            <span class="ti-trash"></span></button
-        ></span>
+            ng-click="deleteField($index)">
+            <span class="ti-trash"></span></button></span>
       </div>
       <br />
     </div>
   </div>
 
   <button
-    ng-if="ngTypeForm !== 'builder' && fields.length > 0"
+    ng-if="ngTypeForm !== 'builder' && fields.length> 0"
     class="btn btn-success text-uppercase"
     type="button"
     ng-click="submitForm()"
     ng-disabled="myForm.$invalid"
-  >
+    >
     {{ngButtonText}}
   </button>
 </form>

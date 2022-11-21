@@ -76,5 +76,17 @@ class TablesController
             ->write(json_encode($info));
     }
 
+      public static function checkConnection(\Slim\Http\Request $req, \Slim\Http\Response $response, $args)
+    {
+        $table = new Table();
+        $info = $_SERVER;
+        //$tables = $table->getTables();
+
+        return $response
+            ->withStatus(200)
+            ->withHeader("Content-Type", "application/json")
+            ->write(json_encode($info));
+    }
+
 
 }

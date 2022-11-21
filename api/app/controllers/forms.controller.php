@@ -14,9 +14,10 @@ if (!defined("_MODELS_")) {
     define("_MODELS_", __ROOT__."/app/models");
 }
 
+$files_format = str_replace("/api", "", getcwd());
 
 if (!defined("_FILES_PATH_")) {
-    define("_FILES_PATH_", __ROOT__."/files");
+    define("_FILES_PATH_", $files_format."/files");
 }
 
 
@@ -54,7 +55,6 @@ class FormsController
     public static function saveDataForm(\Slim\Http\Request $request, \Slim\Http\Response $response, $args)
     {
         $form = new Form();
-
         $infoToSave = array();
         $allPostPutVars = $request->getParsedBody();
         $files = $request->getUploadedFiles();
@@ -68,7 +68,7 @@ class FormsController
                 $path = _FILES_PATH_."/".$newfileName;
                 $file->moveTo($path);
 
-                $infoToSave[$key] = "api/files/".$newfileName;
+                $infoToSave[$key] = "files/".$newfileName;
             }
 
         }
@@ -122,7 +122,7 @@ class FormsController
                 $path = _FILES_PATH_."/".$newfileName;
                 $file->moveTo($path);
 
-                $infoToSave[$key] = "api/files/".$newfileName;
+                $infoToSave[$key] = "files/".$newfileName;
             }
         }
 
