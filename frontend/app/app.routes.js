@@ -28,8 +28,7 @@ angular
   function routes($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'app/forms/form-builder.html',
-        //controller: 'MainController',
+        templateUrl: 'app/dashboard/dashboard.html',
       })
       .when('/login', {
         title: 'Iniciar Session',
@@ -38,7 +37,6 @@ angular
       })
       .when('/404', {
         templateUrl: 'app/layout/404.html',
-        //controller: 'MainController',
       })
       .when('/products', {
         title: 'Productos',
@@ -51,9 +49,6 @@ angular
           TablesPrepService: function (TablesService) {
             return TablesService.getDatatable(7);
           },
-          /*FormsPrepared: function (FormService) {
-            return FormService.getFormBuilder(3);
-          }, */
         },
       })
       .when('/products/new', {
@@ -80,6 +75,120 @@ angular
               $route.current.params.id,
               'PRODUCTS',
             );
+          },
+        },
+      })
+      .when('/clients', {
+        title: 'Clientes',
+        module: 'Clientes',
+        main: '/clients',
+        subTitle: 'Listado de clientes',
+        templateUrl: 'app/clients/clients.list.html',
+        controller: 'ClientsController',
+        resolve: {
+          TablesPrepService: function (TablesService) {
+            return TablesService.getDatatable(9);
+          },
+        },
+      })
+      .when('/clients/new', {
+        title: 'Nuevo cliente',
+        module: 'Clients',
+        main: '/clients',
+        templateUrl: 'app/clients/form.clients.html',
+        controller: 'ClientNewController',
+        resolve: {
+          FormsPrepared: function (FormService) {
+            return FormService.getFormBuilder(7);
+          },
+        },
+      })
+      .when('/clients/edit/:id', {
+        title: 'Editar cliente',
+        module: 'Clientes',
+        main: '/clients',
+        templateUrl: 'app/clients/clients.edit.html',
+        controller: 'ClientEditController',
+        resolve: {
+          FormsPrepared: function ($route, FormService) {
+            return FormService.getFormData($route.current.params.id, 'CLIENTS');
+          },
+        },
+      })
+      .when('/providers', {
+        title: 'Proveedores',
+        module: 'Proveedores',
+        main: '/providers',
+        subTitle: 'Listado de proveedores',
+        templateUrl: 'app/providers/providers.list.html',
+        controller: 'ProvidersController',
+        resolve: {
+          TablesPrepService: function (TablesService) {
+            return TablesService.getDatatable(10);
+          },
+        },
+      })
+      .when('/providers/new', {
+        title: 'Nuevo proveedor',
+        module: 'providers',
+        main: '/providers',
+        templateUrl: 'app/providers/form.providers.html',
+        controller: 'ProviderNewController',
+        resolve: {
+          FormsPrepared: function (FormService) {
+            return FormService.getFormBuilder(8);
+          },
+        },
+      })
+      .when('/providers/edit/:id', {
+        title: 'Editar cliente',
+        module: 'providers',
+        main: '/providers',
+        templateUrl: 'app/providers/providers.edit.html',
+        controller: 'ProvidersEditController',
+        resolve: {
+          FormsPrepared: function ($route, FormService) {
+            return FormService.getFormData(
+              $route.current.params.id,
+              'PROVIDERS',
+            );
+          },
+        },
+      })
+      .when('/users', {
+        title: 'Usuarios',
+        module: 'Usuarios',
+        main: '/users',
+        subTitle: 'Listado de usuarios',
+        templateUrl: 'app/users/users.list.html',
+        controller: 'UsersController',
+        resolve: {
+          TablesPrepService: function (TablesService) {
+            return TablesService.getDatatable(11);
+          },
+        },
+      })
+      .when('/users/new', {
+        title: 'Nuevo usuario',
+        module: 'users',
+        main: '/users',
+        templateUrl: 'app/users/form.users.html',
+        controller: 'UserNewController',
+        resolve: {
+          FormsPrepared: function (FormService) {
+            return FormService.getFormBuilder(9);
+          },
+        },
+      })
+      .when('/users/edit/:id', {
+        title: 'Editar usuario',
+        module: 'users',
+        main: '/users',
+        templateUrl: 'app/users/users.edit.html',
+        controller: 'UsersEditController',
+        resolve: {
+          FormsPrepared: function ($route, FormService) {
+            return FormService.getFormData($route.current.params.id, 'USERS');
           },
         },
       })

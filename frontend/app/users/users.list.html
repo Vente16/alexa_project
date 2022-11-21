@@ -1,0 +1,17 @@
+<div class="col-md-12 mt-5 container-content">
+   <a href="#!/users/new" class="btn btn-info content-left">Crear nuevo usuario</a>
+  <div class="card">
+    <div class="card-body">
+      <ng-data-table
+        id="dataTableDinamyc"
+        table-records="dataTableInfo"
+        table-options="dataTableConfig"
+        ng-show="dataTableInfo.records.length > 0"
+        table-bulild-type="list"
+        table-path="/users"
+        table-name="USERS"
+      >
+      </ng-data-table>
+    </div>
+  </div>
+</div>
