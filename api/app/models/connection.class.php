@@ -35,7 +35,7 @@ class Connection
             $con->exec("set names utf8");
             $this->con =  $con;
         } catch (PDOException $e) {
-            // echo 'Falló la conexión: ' . $e->getMessage();
+            echo 'Falló la conexión: ' . $e->getMessage();
             $this->con =  false;
         }
     }

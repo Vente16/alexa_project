@@ -24,11 +24,18 @@ require _CONTROLLERS_."/tables.controller.php";
 require _CONTROLLERS_."/forms.controller.php";
 require _CONTROLLERS_."/users.controller.php";
 
-$app = new \Slim\App();
+$app = new \Slim\App([
+    'settings' => [
+        'displayErrorDetails' => true,
+        'debug'               => true,
+        'whoops.editor'       => 'sublime',
+    ]
+]);
 
 
 // GET requests
 $app->get("/", "HomeController:index");
+$app->get("/checkCon", "TablesController:checkConnection");
 $app->get("/tables/fileds", "TablesController::getTables");
 $app->get("/dataTable[/{builder}]", "TablesController::dinamycTables");
 $app->get("/forms[/{id}]", "FormsController::getFormsBuilt");
