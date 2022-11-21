@@ -1,0 +1,19 @@
+DELIMITER $$
+CREATE PROCEDURE `GET_DIMANYC_TABLE`(IN `id_builder` INT)
+BEGIN
+SET @sql = NULL;
+SET @tableName = NULL;
+SELECT
+  NAME_TABLE,
+  GROUP_CONCAT(DISTINCT
+    CONCAT(FIELDS)
+  ) INTO @tableName , @sql
+FROM TABLES_BUILDER WHERE ID = id_builder;
+
+SET @sql = CONCAT('SELECT ', @sql, ' FROM ',@tableName,' t WHERE t.ESTADO = 1 ');
+
+PREPARE stmt FROM @sql;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+END$$
+DELIMITER ;
