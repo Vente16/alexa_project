@@ -168,4 +168,9 @@ $ composer install
 
 👀 Cambia la clave apiUrl por la dirección de tu servidor local
 
+#### Correr el frontend
+Para correr el frontend abre el archivo index.html que se encuentra en la carpeta frontend/index.html
+
+O corre desde tu servidor local http://localhost/alexa_project/frontend
+
 ### Eso sería todo 😁 lo hiciste 🎸
