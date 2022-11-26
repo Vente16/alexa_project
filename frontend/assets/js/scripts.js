@@ -23,6 +23,10 @@
         $('.page-container').toggleClass('sbar_collapsed');
     });
 
+    var year = new Date().getFullYear();
+
+    $('#year').html(year);
+
     /*================================
     Start Footer resizer
     ==================================*/

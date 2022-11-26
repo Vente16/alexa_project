@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Proveedores</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico" />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css/themify-icons.css" />
+    <link rel="stylesheet" href="assets/css/metisMenu.css" />
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/css/slicknav.min.css" />
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
+    <link rel="stylesheet" href="assets/css/typography.css" />
+    <link rel="stylesheet" href="assets/css/default-css.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+
+    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
+</head>
+
+<body>
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <div class="page-container">
+        <div class="sidebar-menu">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <a href="inicio.html">
+                        <img src="assets/images/logo-ops.png" alt="logo">
+                    </a>
+                </div>
+            </div>
+            <div class="main-menu">
+                <div class="menu-inner">
+                    <nav>
+                        <ul class="metismenu" id="menu">
+                            <li>
+                                <a href="inicio.html" aria-expanded="false">
+                                    <i class="ti-dashboard"></i><span>Inicio</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="usuarios.html" aria-expanded="false">
+                                  <i class="fa fa-users"></i>
+                                  <span>Usuarios</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" aria-expanded="false">
+                                    <i class="ti-receipt"></i>
+                                    <span>Ventas (enproceso)</span>
+                                </a>
+                            </li>
+                            <li  >
+                                <a href="productos.html" aria-expanded="false">
+                                    <i class="ti-dropbox-alt"></i>
+                                    <span>Productos</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" aria-expanded="false">
+                                    <i class="fa fa-table"></i>
+                                    <span>Inventario (enproceso)</span>
+                                </a>
+                            </li>
+                            <li class="active">
+                                <a href="proveedores.html" aria-expanded="false">
+                                    <i class="ti-agenda"></i>
+                                    <span>Proveedores</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="clientes.html" aria-expanded="false">
+                                    <i class="fa fa-user-secret"></i>
+                                    <span>Clientes</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="header-area ng-scope">
+                <div class="row align-items-center">
+
+                    <div class="col-md-6 col-sm-8 clearfix">
+                        <div class="nav-btn pull-left">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-4 clearfix">
+                        <ul class="notification-area pull-right">
+                            <li id="full-view"><i class="ti-fullscreen"></i></li>
+                            <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
+                            <li class="dropdown">
+
+                                <i class="ti-bell"></i>
+                                <div class="dropdown-menu bell-notify-box notify-box">
+                                    <span class="notify-title">Tienes 3 notificaciones <a href="#">view all</a></span>
+                                    <div class="nofity-list">
+                                        <a href="#" class="notify-item">
+                                            <div class="notify-thumb">
+                                                <i class="ti-key btn-danger"></i>
+                                            </div>
+                                            <div class="notify-text">
+                                                <p>Has cambiado tu contraseña</p>
+                                                <span>Justo Ahora</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="notify-item">
+                                            <div class="notify-thumb">
+                                                <i class="ti-comments-smiley btn-info"></i>
+                                            </div>
+                                            <div class="notify-text">
+                                                <p>Nuevos datos</p>
+                                                <span>Hace 3 segundos</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="notify-item">
+                                            <div class="notify-thumb">
+                                                <i class="ti-key btn-primary"></i>
+                                            </div>
+                                            <div class="notify-text">
+                                                <p>Se ha cambiado un usuario</p>
+                                                <span>Justo Ahora</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="notify-item">
+                                            <div class="notify-thumb">
+                                                <i class="ti-comments-smiley btn-info"></i>
+                                            </div>
+                                            <div class="notify-text">
+                                                <p>Se ha cambiado un usuario</p>
+                                                <span>Hace 30 segundos</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="notify-item">
+                                            <div class="notify-thumb">
+                                                <i class="ti-key btn-primary"></i>
+                                            </div>
+                                            <div class="notify-text">
+                                                <p>Nuevo cliente creado</p>
+                                                <span>Justo Ahora</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="notify-item">
+                                            <div class="notify-thumb">
+                                                <i class="ti-key btn-danger"></i>
+                                            </div>
+                                            <div class="notify-text">
+                                                <p>Has cambiado tu contraeña</p>
+                                                <span>Justo Ahora</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="notify-item">
+                                            <div class="notify-thumb">
+                                                <i class="ti-key btn-danger"></i>
+                                            </div>
+                                            <div class="notify-text">
+                                                <p>Has cambiado tu contraeña</p>
+                                                <span>Justo Ahora</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="dropdown">
+
+                                <i class="fa fa-envelope-o"></i>
+                                <div class="dropdown-menu notify-box nt-enveloper-box">
+                                    <span class="notify-title">Tienes 3 notificsciones nuevas <a href="#">view
+                                            all</a></span>
+                                    <div class="nofity-list">
+                                        <a href="#" class="notify-item">
+                                            <div class="notify-thumb">
+                                                <img src="assets/images/author/author-img1.jpg" alt="image">
+                                            </div>
+                                            <div class="notify-text">
+                                                <p>Aglae Mayer</p>
+                                                <span class="msg">Nuevos datos actualizaodos</span>
+                                                <span>3:15 PM</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="notify-item">
+                                            <div class="notify-thumb">
+                                                <img src="assets/images/author/author-img2.jpg" alt="image">
+                                            </div>
+                                            <div class="notify-text">
+                                                <p>Aglae Mayer</p>
+                                                <span class="msg">Nuevo proveedor creado</span>
+                                                <span>3:15 PM</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="notify-item">
+                                            <div class="notify-thumb">
+                                                <img src="assets/images/author/author-img3.jpg" alt="image">
+                                            </div>
+                                            <div class="notify-text">
+                                                <p>Aglae Mayer</p>
+                                                <span class="msg">Nuevos datos actualziados</span>
+                                                <span>3:15 PM</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="notify-item">
+                                            <div class="notify-thumb">
+                                                <img src="assets/images/author/author-img4.jpg" alt="image">
+                                            </div>
+                                            <div class="notify-text">
+                                                <p>Aglae Mayer</p>
+                                                <span class="msg">Se ha creacdo un cleinte</span>
+                                                <span>3:15 PM</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="notify-item">
+                                            <div class="notify-thumb">
+                                                <img src="assets/images/author/author-img2.jpg" alt="image">
+                                            </div>
+                                            <div class="notify-text">
+                                                <p>Aglae Mayer</p>
+                                                <span class="msg">Espero por tu respuesta</span>
+                                                <span>3:15 PM</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="notify-item">
+                                            <div class="notify-thumb">
+                                                <img src="assets/images/author/author-img1.jpg" alt="image">
+                                            </div>
+                                            <div class="notify-text">
+                                                <p>Aglae Mayer</p>
+                                                <span class="msg">Estoy esperando tu respuesta</span>
+                                                <span>3:15 PM</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="notify-item">
+                                            <div class="notify-thumb">
+                                                <img src="assets/images/author/author-img3.jpg" alt="image">
+                                            </div>
+                                            <div class="notify-text">
+                                                <p>Aglae Mayer</p>
+                                                <span class="msg">Estoy esperando tu respuesta</span>
+                                                <span>3:15 PM</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="settings-btn">
+                                <i class="ti-settings"></i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-title-area ng-scope">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <div class="breadcrumbs-area clearfix">
+                            <h4 class="page-title pull-left text-uppercase ">Proveedores</h4>
+                            <ul class="breadcrumbs pull-left">
+                                <li><a href="proveedores.html" class="">Proveedores</a></li>
+                                <li><span class="">Lista de proveedores</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 clearfix">
+                        <div class="user-profile pull-right">
+                            <h4 class="user-name dropdown-toggle text-uppercase" data-toggle="dropdown">
+                                Alexa Marquez <i class="fa fa-angle-down"></i>
+                            </h4>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Configuración</a>
+                                <a class="dropdown-item" href="#">Cerrar sessión</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-content-inner">
+
+            <div class="col-md-12 mt-5 container-content ng-scope">
+                <a href="#" class="btn btn-info content-left">Crear nuevo proveedor</a>
+                <div class="card">
+                    <div class="card-body">
+
+                            <div>
+                                <div class="data-tables datatable-dark">
+                                    <table id="myTable"
+                                        class="text-center table table-bordered bordered table-striped table-condensed datatable">
+                                        <thead class="text-capitalize">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>NOMBRE</th>
+                                                <th>NIT</th>
+                                                <th>DIRECCION</th>
+                                                <th>TELEFONO</th>
+                                                <th>ACTION</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <td>1</td>
+                                                <td>TEXTILES S.A.S</td>
+                                                <td>44444</td>
+                                                <td>CALLE 50 # 20 - 30</td>
+                                                <td>85858585</td>
+                                                <td>
+                                                   <span>
+                                                        <div class="">
+                                                            <a href="#">
+                                                                <span class="ti-eye"></span>
+                                                                <span class="icon-name"></span>
+                                                            </a>
+
+                                                            <a href="#" data-toggle="modal" data-target="#exampleModal">
+                                                                <span class="ti-trash"></span>
+                                                                <span class="icon-name"></span>
+                                                            </a>
+                                                        </div>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Elemento a eliminar</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Recuerde que una vez eliminado este elemento no lo podrá visualizar de nuevo
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn btn-primary" ng-click="launchEvent()">Aceptar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-area">
+            <p>© Copyright <span id="year"></span>. Todos los derechos reservados </span>
+        </div>
+    </footer>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!-- bootstrap 4 js -->
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/metisMenu.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.min.js"></script>
+    <script src="assets/js/jquery.slicknav.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script>
+        zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+        ZC.LICENSE = [
+            "569d52cefae586f634c54f86dc99e6a9",
+            "ee6b7db5b51705a13dc2339db3edaf6d",
+        ];
+    </script>
+
+    <script src="assets/js/line-chart.js"></script>
+    <script src="assets/js/pie-chart.js"></script>
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/scripts.js"></script>
+
+</body>
+
+</html>
